@@ -17,23 +17,7 @@ Khoa Nguyen
 
 ##### A1: Copy here the declaration of each new or changed _struct_ or _struct_ member, global or static variable, _typedef_, or enumeration.  Identify the purpose of each in 25 words or less.
 
-```c
-/* The thread list holds threads that have called thread_sleep.
- * It is a global variable in timer.c.
- * */
-struct list waiting_thread_list;
 
-/* waiting_elem is the corresponding list element variable for 
- * the waiting_thread_list. It is a member of thread.
- */
-struct list_elem waiting_elem;
-
-/* The thread_sema gets downed in thread_sleep, and gets upped
- * by timer.c's timer_interrupt method once the thread no longer 
- * needs to be sleeping.
- */
-struct semaphore thread_sema;
-```
 
 **---- ALGORITHMS ----**
 
@@ -75,17 +59,6 @@ Our goal was a working design. We were unable to do that, so we did not consider
 
 ##### B1: Copy here the declaration of each new or changed _struct_ or _struct_ member, global or static variable, _typedef_, or enumeration.  Identify the purpose of each in 25 words or less.
 
-```c
-/* Each thread now has a list of donators that it will use to 
- * determine its effective priority.
- */
-struct list donators;
-
-/* donor_elem is the corresponding list element variable for
- * the donators list. It is a member of thread.
- */
-struct list_elem donor_elem;
-```
 
 ##### B2: Explain the data structure used to track priority donation. Use ASCII art to diagram a nested donation.  (Alternately, submit a .png file.)
 
@@ -146,7 +119,7 @@ Nested donation is handled because...
 timer  recent_cpu    priority   thread
 ticks   A   B   C   A   B   C   to run
 -----  --  --  --  --  --  --   ------
- 0
+ 0	0   0   0   0   1   2     C
  4
  8
 12
@@ -159,10 +132,15 @@ ticks   A   B   C   A   B   C   to run
 
 ##### C3: Did any ambiguities in the scheduler specification make values in the table uncertain?  If so, what rule did you use to resolve them?  Does this match the behavior of your scheduler?
 
+
 ##### C4: How is the way you divided the cost of scheduling between code inside and outside interrupt context likely to affect performance?
+we didnt.
 
 **---- RATIONALE ----**
 
 ##### C5: Briefly critique your design, pointing out advantages and disadvantages in your design choices.  If you were to have extra time to work on this part of the project, how might you choose to refine or improve your design?
+Our design is not finished and could have been improved with more time. We were both too busy to do much more work but admittidly more time could have been spent on this assignment. The critique would be a misallocation of time.
 
 ##### C6: The assignment explains arithmetic for fixed-point math in detail, but it leaves it open to you to implement it.  Why did you decide to implement it the way you did?  If you created an abstraction layer for fixed-point math, that is, an abstract data type and/or a set of functions or macros to manipulate fixed-point numbers, why did you do so?  If not, why not?
+
+We didn't, because it would have been more work in the limited time we had. Simple as that.
